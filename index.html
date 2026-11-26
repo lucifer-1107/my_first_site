@@ -6,85 +6,74 @@
 <meta name="theme-color" content="#1f6f5c">
 <title>My Photo Vault</title>
 <style>
-:root{
-  --bg:#eef1f0; --card:#ffffff; --ink:#1c2b27; --muted:#5d6d68;
-  --accent:#1f6f5c; --accent-ink:#ffffff; --line:#d3dbd8; --danger:#b3372f;
-}
-@media (prefers-color-scheme: dark){
-  :root{ --bg:#141a18; --card:#1d2623; --ink:#e8efec; --muted:#9aaaa4; --accent:#4fb89c; --accent-ink:#0d1b17; --line:#2c3935; --danger:#ef7b72; }
-}
+:root{--bg:#eef1f0;--card:#fff;--ink:#1c2b27;--muted:#5d6d68;--accent:#1f6f5c;--accent-ink:#fff;--line:#d3dbd8;--danger:#b3372f}
+@media (prefers-color-scheme: dark){:root{--bg:#141a18;--card:#1d2623;--ink:#e8efec;--muted:#9aaaa4;--accent:#4fb89c;--accent-ink:#0d1b17;--line:#2c3935;--danger:#ef7b72}}
 *{box-sizing:border-box}
 html,body{margin:0}
-body{
-  background:var(--bg); color:var(--ink);
-  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-}
-header{
-  display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
-  padding:20px 16px 8px; max-width:1100px; margin:0 auto;
-}
-h1{font-family:Georgia,"Times New Roman",serif; font-size:1.7rem; margin:0; letter-spacing:-.01em}
-.count{color:var(--muted); font-size:.95rem; margin-top:2px}
-.btn{
-  appearance:none; border:0; border-radius:10px; padding:12px 18px; font:inherit; font-weight:600;
-  background:var(--accent); color:var(--accent-ink); cursor:pointer; min-height:44px;
-}
-.btn.ghost{background:transparent; color:var(--ink); border:1px solid var(--line)}
-.btn.danger{background:transparent; color:var(--danger); border:1px solid var(--danger)}
-.btn:focus-visible,.tile:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
-main{max-width:1100px; margin:0 auto; padding:8px 16px 40px}
-.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:8px}
-@media(min-width:700px){.grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:12px}}
-.tile{
-  padding:0; border:0; background:var(--card); border-radius:10px; overflow:hidden;
-  aspect-ratio:1/1; cursor:pointer; display:block; width:100%;
-}
-.tile img{width:100%; height:100%; object-fit:cover; display:block}
-.empty{
-  border:2px dashed var(--line); border-radius:14px; padding:48px 20px; text-align:center; color:var(--muted); margin-top:16px;
-}
-.empty strong{display:block; color:var(--ink); font-size:1.15rem; margin-bottom:6px}
-.status{min-height:1.4em; color:var(--muted); font-size:.9rem; padding:4px 16px; max-width:1100px; margin:0 auto}
-#viewer{
-  position:fixed; inset:0; background:rgba(8,12,11,.96); display:none; flex-direction:column; z-index:10;
-  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-}
+body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+[hidden]{display:none!important}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:20px 16px 8px;max-width:1100px;margin:0 auto}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:1.7rem;margin:0;letter-spacing:-.01em}
+.count{color:var(--muted);font-size:.95rem;margin-top:2px}
+.actions{display:flex;gap:8px}
+.btn{appearance:none;border:0;border-radius:10px;padding:12px 18px;font:inherit;font-weight:600;background:var(--accent);color:var(--accent-ink);cursor:pointer;min-height:44px}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.danger{background:transparent;color:var(--danger);border:1px solid var(--danger)}
+.btn:focus-visible,.tile:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+main{max-width:1100px;margin:0 auto;padding:8px 16px 40px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}}
+.tile{padding:0;border:0;background:var(--card);border-radius:10px;overflow:hidden;aspect-ratio:1/1;cursor:pointer;display:block;width:100%}
+.tile img{width:100%;height:100%;object-fit:cover;display:block}
+.empty{border:2px dashed var(--line);border-radius:14px;padding:48px 20px;text-align:center;color:var(--muted);margin-top:16px}
+.empty strong{display:block;color:var(--ink);font-size:1.15rem;margin-bottom:6px}
+.status{min-height:1.4em;color:var(--muted);font-size:.95rem;padding:4px 16px;max-width:1100px;margin:0 auto}
+.login{max-width:380px;margin:24px auto;padding:0 16px}
+.login .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;display:grid;gap:12px}
+.login h2{margin:0 0 2px;font-size:1.2rem}
+.login p{margin:0;color:var(--muted);font-size:.95rem}
+.login label{font-size:.9rem;font-weight:600;display:grid;gap:6px}
+input[type=email],input[type=password]{font:inherit;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+.row{display:flex;gap:8px}.row .btn{flex:1}
+#viewer{position:fixed;inset:0;background:rgba(8,12,11,.96);display:none;flex-direction:column;z-index:10;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
 #viewer.open{display:flex}
-.vbar{display:flex; justify-content:space-between; align-items:center; gap:8px; padding:10px 12px; color:#e8efec}
-.vbar .btn{background:#2a3632; color:#e8efec; border:0}
-.vbar .btn.danger{color:#ff9b93; background:#2a3632}
-.vname{font-size:.9rem; opacity:.8; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; flex:1; text-align:center}
-.stage{flex:1; display:flex; align-items:center; justify-content:center; min-height:0; position:relative; touch-action:pan-y}
-.stage img{max-width:100%; max-height:100%; object-fit:contain}
-.nav{
-  position:absolute; top:50%; transform:translateY(-50%); width:48px; height:64px; border:0; border-radius:10px;
-  background:rgba(255,255,255,.14); color:#fff; font-size:1.6rem; cursor:pointer;
-}
-.nav.prev{left:8px} .nav.next{right:8px}
+.vbar{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 12px;color:#e8efec}
+.vbar .btn{background:#2a3632;color:#e8efec;border:0;padding:12px 14px}
+.vbar .btn.danger{color:#ff9b93;background:#2a3632}
+.vname{font-size:.9rem;opacity:.8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;text-align:center}
+.stage{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;position:relative;touch-action:pan-y}
+.stage img{max-width:100%;max-height:100%;object-fit:contain}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:64px;border:0;border-radius:10px;background:rgba(255,255,255,.14);color:#fff;font-size:1.6rem;cursor:pointer}
+.nav.prev{left:8px}.nav.next{right:8px}
 @media(max-width:600px){.nav{display:none}}
-@media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-
 <header>
-  <div>
-    <h1>My Photo Vault</h1>
-    <div class="count" id="count">0 photos</div>
-  </div>
-  <div>
-    <button class="btn" id="addBtn">Add photos</button>
+  <div><h1>My Photo Vault</h1><div class="count" id="count"></div></div>
+  <div class="actions">
+    <button class="btn" id="addBtn" hidden>Add photos</button>
+    <button class="btn ghost" id="outBtn" hidden>Sign out</button>
     <input type="file" id="file" accept="image/*" multiple hidden>
   </div>
 </header>
 <div class="status" id="status" role="status" aria-live="polite"></div>
 
-<main>
-  <div class="empty" id="empty" hidden>
-    <strong>No photos yet</strong>
-    Tap “Add photos” to save your first one.
+<section class="login" id="login" hidden>
+  <div class="box">
+    <h2>Sign in to your vault</h2>
+    <p>Your photos are private and available on every device you sign in on.</p>
+    <label>Email <input type="email" id="email" autocomplete="email"></label>
+    <label>Password <input type="password" id="pw" autocomplete="current-password"></label>
+    <div class="row">
+      <button class="btn" id="inBtn">Sign in</button>
+      <button class="btn ghost" id="upBtn">Create account</button>
+    </div>
   </div>
+</section>
+
+<main id="app" hidden>
+  <div class="empty" id="empty" hidden><strong>No photos yet</strong>Tap “Add photos” to save your first one.</div>
   <div class="grid" id="grid"></div>
 </main>
 
@@ -102,135 +91,176 @@ main{max-width:1100px; margin:0 auto; padding:8px 16px 40px}
   </div>
 </div>
 
-<script>
-(function(){
-  var DB_NAME='photo-vault', STORE='photos', db=null;
-  var photos=[], urls=[], current=-1, viewerUrl=null;
-  var $=function(id){return document.getElementById(id)};
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,signOut} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import {getFirestore,collection,doc,getDoc,getDocs,setDoc,deleteDoc,query,orderBy} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
-  function openDB(){
-    return new Promise(function(res,rej){
-      var r=indexedDB.open(DB_NAME,1);
-      r.onupgradeneeded=function(){r.result.createObjectStore(STORE,{keyPath:'id'})};
-      r.onsuccess=function(){res(r.result)};
-      r.onerror=function(){rej(r.error)};
-    });
-  }
-  function tx(mode){return db.transaction(STORE,mode).objectStore(STORE)}
-  function reqP(r){return new Promise(function(res,rej){r.onsuccess=function(){res(r.result)};r.onerror=function(){rej(r.error)}})}
+/* ====== REPLACE THE BLOCK BELOW WITH THE firebaseConfig FROM YOUR FIREBASE CONSOLE ====== */
+const firebaseConfig = {
+  apiKey: "AIzaSyBVwVCtrETWHMVcrdvv-ducNlreZSRHsPg",
+  authDomain: "photo-vault-6a4c9.firebaseapp.com",
+  projectId: "photo-vault-6a4c9",
+  storageBucket: "photo-vault-6a4c9.firebasestorage.app",
+  messagingSenderId: "232328409708",
+  appId: "1:232328409708:web:b3774566962f37a6db1e49"
+};
+/* ========================================================================================= */
 
-  function makeThumb(file){
-    return new Promise(function(res){
-      var img=new Image(), u=URL.createObjectURL(file);
-      img.onload=function(){
-        var s=400/Math.max(img.width,img.height); if(s>1)s=1;
-        var c=document.createElement('canvas');
-        c.width=Math.round(img.width*s); c.height=Math.round(img.height*s);
-        c.getContext('2d').drawImage(img,0,0,c.width,c.height);
-        c.toBlob(function(b){URL.revokeObjectURL(u);res(b||file)},'image/jpeg',0.8);
-      };
-      img.onerror=function(){URL.revokeObjectURL(u);res(file)};
-      img.src=u;
-    });
-  }
+const $=id=>document.getElementById(id);
+const say=t=>{$('status').textContent=t||''};
+let auth,db,uid=null,items=[],current=-1,vtoken=0;
 
-  function say(t){$('status').textContent=t||''}
+function showApp(on){
+  $('login').hidden=on;$('app').hidden=!on;$('addBtn').hidden=!on;$('outBtn').hidden=!on;
+  if(!on)$('count').textContent='';
+}
+function errText(e){
+  const c=e&&e.code||'';
+  if(c==='auth/invalid-credential'||c==='auth/wrong-password'||c==='auth/user-not-found')return 'Wrong email or password.';
+  if(c==='auth/email-already-in-use')return 'That email already has an account. Use Sign in.';
+  if(c==='auth/weak-password')return 'Password must be at least 6 characters.';
+  if(c==='auth/invalid-email')return 'That email address looks wrong.';
+  if(c==='auth/operation-not-allowed')return 'Email sign-in is not turned on in Firebase yet.';
+  if(c==='auth/admin-restricted-operation')return 'New accounts are switched off. Use Sign in.';
+  if(c==='permission-denied')return 'Firestore rules are not set up yet. Publish the rules from the setup steps.';
+  return (e&&e.message)||'Something went wrong.';
+}
 
-  async function load(){
-    var all=await reqP(tx('readonly').getAll());
-    all.sort(function(a,b){return b.added-a.added});
-    photos=all; render();
-  }
+async function doAuth(mode){
+  const email=$('email').value.trim(),pw=$('pw').value;
+  if(!email||pw.length<6){say('Enter your email and a password of at least 6 characters.');return}
+  say('Please wait…');
+  try{
+    if(mode==='up')await createUserWithEmailAndPassword(auth,email,pw);
+    else await signInWithEmailAndPassword(auth,email,pw);
+    say('');
+  }catch(e){say(errText(e))}
+}
 
-  function render(){
-    urls.forEach(URL.revokeObjectURL); urls=[];
-    var g=$('grid'); g.innerHTML='';
-    photos.forEach(function(p,i){
-      var u=URL.createObjectURL(p.thumb); urls.push(u);
-      var b=document.createElement('button'); b.className='tile'; b.setAttribute('aria-label','Open '+p.name);
-      var im=document.createElement('img'); im.src=u; im.alt=p.name; im.loading='lazy';
-      b.appendChild(im); b.onclick=function(){openViewer(i)}; g.appendChild(b);
-    });
-    $('count').textContent=photos.length+(photos.length===1?' photo':' photos');
-    $('empty').hidden=photos.length>0;
-  }
-
-  async function addFiles(files){
-    var list=Array.from(files).filter(function(f){return f.type.indexOf('image/')===0});
-    if(!list.length){say('Please choose image files.');return}
-    var done=0;
-    for(var f of list){
-      say('Saving '+(done+1)+' of '+list.length+'…');
-      try{
-        var thumb=await makeThumb(f);
-        var rec={id:Date.now()+'-'+Math.random().toString(36).slice(2,8),name:f.name||'photo',type:f.type,added:Date.now()+done,blob:f,thumb:thumb};
-        await reqP(tx('readwrite').put(rec)); done++;
-      }catch(e){
-        say('Could not save '+f.name+'. Your device may be out of storage.'); await load(); return;
-      }
-    }
-    say(done+(done===1?' photo saved.':' photos saved.'));
-    await load();
-  }
-
-  function openViewer(i){
-    current=i; var p=photos[i];
-    if(viewerUrl)URL.revokeObjectURL(viewerUrl);
-    viewerUrl=URL.createObjectURL(p.blob);
-    $('vimg').src=viewerUrl; $('vimg').alt=p.name; $('vname').textContent=p.name;
-    $('viewer').classList.add('open'); $('closeBtn').focus();
-  }
-  function closeViewer(){
-    $('viewer').classList.remove('open');
-    if(viewerUrl){URL.revokeObjectURL(viewerUrl);viewerUrl=null}
-    $('vimg').removeAttribute('src');
-  }
-  function step(d){
-    if(!photos.length)return;
-    openViewer((current+d+photos.length)%photos.length);
-  }
-  async function del(){
-    var p=photos[current]; if(!p)return;
-    if(!confirm('Delete “'+p.name+'”? This cannot be undone.'))return;
-    await reqP(tx('readwrite').delete(p.id));
-    closeViewer(); say('Photo deleted.'); await load();
-  }
-  function download(){
-    var p=photos[current]; if(!p)return;
-    var a=document.createElement('a'); a.href=URL.createObjectURL(p.blob); a.download=p.name;
-    document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(function(){URL.revokeObjectURL(a.href)},2000);
-  }
-
-  $('addBtn').onclick=function(){$('file').click()};
-  $('file').onchange=function(e){addFiles(e.target.files); e.target.value=''};
-  $('closeBtn').onclick=closeViewer;
-  $('prev').onclick=function(){step(-1)};
-  $('next').onclick=function(){step(1)};
-  $('delBtn').onclick=del;
-  $('dlBtn').onclick=download;
-  document.addEventListener('keydown',function(e){
-    if(!$('viewer').classList.contains('open'))return;
-    if(e.key==='Escape')closeViewer();
-    if(e.key==='ArrowLeft')step(-1);
-    if(e.key==='ArrowRight')step(1);
+function toImg(file){
+  return new Promise((res,rej)=>{
+    const u=URL.createObjectURL(file),im=new Image();
+    im.onload=()=>{URL.revokeObjectURL(u);res(im)};
+    im.onerror=()=>{URL.revokeObjectURL(u);rej(new Error('Could not read '+file.name+'.'))};
+    im.src=u;
   });
-  var sx=null;
-  $('stage').addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
-  $('stage').addEventListener('touchend',function(e){
-    if(sx===null)return; var dx=e.changedTouches[0].clientX-sx; sx=null;
-    if(Math.abs(dx)>60)step(dx<0?1:-1);
-  });
+}
+function shrink(im,max,q){
+  const s=Math.min(1,max/Math.max(im.width,im.height));
+  const c=document.createElement('canvas');
+  c.width=Math.max(1,Math.round(im.width*s));c.height=Math.max(1,Math.round(im.height*s));
+  c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+  return c.toDataURL('image/jpeg',q);
+}
+function fitFull(im){
+  let max=1600,q=0.82,d=shrink(im,max,q);
+  for(let i=0;i<8&&d.length>900000;i++){q=Math.max(0.5,q-0.08);max=Math.round(max*0.85);d=shrink(im,max,q)}
+  return d;
+}
 
-  (async function init(){
-    if(!window.indexedDB){say('This browser cannot store photos. Try Chrome, Safari or Firefox.');return}
+const col=n=>collection(db,'users',uid,n);
+
+async function load(){
+  say('Loading your photos…');
+  try{
+    const snap=await getDocs(query(col('thumbs'),orderBy('created','desc')));
+    items=snap.docs.map(d=>({id:d.id,name:d.data().name,thumb:d.data().data}));
+    say('');render();
+  }catch(e){say(errText(e))}
+}
+function render(){
+  const g=$('grid');g.innerHTML='';
+  items.forEach((m,i)=>{
+    const b=document.createElement('button');b.className='tile';b.setAttribute('aria-label','Open '+m.name);
+    const im=document.createElement('img');im.src=m.thumb;im.alt=m.name;im.loading='lazy';
+    b.appendChild(im);b.onclick=()=>openViewer(i);g.appendChild(b);
+  });
+  $('count').textContent=items.length+(items.length===1?' photo':' photos');
+  $('empty').hidden=items.length>0;
+}
+
+async function addFiles(files){
+  const list=Array.from(files).filter(f=>f.type.indexOf('image/')===0);
+  if(!list.length){say('Please choose image files.');return}
+  let done=0;
+  for(const f of list){
+    say('Saving '+(done+1)+' of '+list.length+'…');
     try{
-      db=await openDB();
-      if(navigator.storage&&navigator.storage.persist)navigator.storage.persist();
-      await load();
-    }catch(e){say('Storage is unavailable. Turn off private browsing and reload.')}
-  })();
-})();
+      const im=await toImg(f);
+      const id=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+      const name=(f.name||'photo').replace(/\.[^.]+$/,'')+'.jpg';
+      await setDoc(doc(db,'users',uid,'full',id),{data:fitFull(im)});
+      await setDoc(doc(db,'users',uid,'thumbs',id),{name,created:Date.now(),data:shrink(im,360,0.7)});
+      done++;
+    }catch(e){say(errText(e));await load();return}
+  }
+  say(done+(done===1?' photo saved.':' photos saved.'));
+  await load();
+}
+
+async function openViewer(i){
+  current=i;const m=items[i],tok=++vtoken;
+  $('vname').textContent=m.name;$('vimg').alt=m.name;$('vimg').src=m.thumb;
+  $('viewer').classList.add('open');$('closeBtn').focus();
+  try{
+    if(!m.full){const s=await getDoc(doc(db,'users',uid,'full',m.id));m.full=s.exists()?s.data().data:m.thumb}
+    if(tok===vtoken)$('vimg').src=m.full;
+  }catch(e){say(errText(e))}
+}
+function closeViewer(){vtoken++;$('viewer').classList.remove('open');$('vimg').removeAttribute('src')}
+function step(d){if(items.length)openViewer((current+d+items.length)%items.length)}
+
+async function del(){
+  const m=items[current];if(!m)return;
+  if(!confirm('Delete “'+m.name+'”? This cannot be undone.'))return;
+  try{
+    await deleteDoc(doc(db,'users',uid,'full',m.id));
+    await deleteDoc(doc(db,'users',uid,'thumbs',m.id));
+    closeViewer();say('Photo deleted.');await load();
+  }catch(e){say(errText(e))}
+}
+async function download(){
+  const m=items[current];if(!m)return;
+  if(!m.full){await openViewer(current)}
+  const a=document.createElement('a');a.href=m.full||m.thumb;a.download=m.name;
+  document.body.appendChild(a);a.click();a.remove();
+}
+
+$('addBtn').onclick=()=>$('file').click();
+$('file').onchange=e=>{addFiles(e.target.files);e.target.value=''};
+$('inBtn').onclick=()=>doAuth('in');
+$('upBtn').onclick=()=>doAuth('up');
+$('pw').onkeydown=e=>{if(e.key==='Enter')doAuth('in')};
+$('outBtn').onclick=()=>signOut(auth);
+$('closeBtn').onclick=closeViewer;
+$('prev').onclick=()=>step(-1);
+$('next').onclick=()=>step(1);
+$('delBtn').onclick=del;
+$('dlBtn').onclick=download;
+document.addEventListener('keydown',e=>{
+  if(!$('viewer').classList.contains('open'))return;
+  if(e.key==='Escape')closeViewer();
+  if(e.key==='ArrowLeft')step(-1);
+  if(e.key==='ArrowRight')step(1);
+});
+let sx=null;
+$('stage').addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
+$('stage').addEventListener('touchend',e=>{
+  if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;sx=null;
+  if(Math.abs(dx)>60)step(dx<0?1:-1);
+});
+
+if(String(firebaseConfig.apiKey).indexOf('PASTE_')===0){
+  say('Setup needed: paste your Firebase config near the top of index.html.');
+}else{
+  const app=initializeApp(firebaseConfig);
+  auth=getAuth(app);db=getFirestore(app);
+  onAuthStateChanged(auth,u=>{
+    if(u){if(u.uid===uid)return;uid=u.uid;showApp(true);load()}
+    else{uid=null;items=[];closeViewer();showApp(false)}
+  });
+}
 </script>
 </body>
 </html>
